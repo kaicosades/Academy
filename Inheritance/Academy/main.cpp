@@ -43,16 +43,27 @@ public:
 		set_age(age);
 		cout << "HConstructor:\t" << this << endl;
 	}
-	~Human()
+	virtual	~Human()
 	{
 		cout << "HDestructor:\t" << this << endl;
 	}
 
-	void print()const
+	virtual std::ostream& print(std::ostream& os)const
 	{
-		cout << last_name << " " << first_name << " " << age << endl;
+		return os << last_name << " " << first_name << " " << age;
 	}
 };
+
+
+//std::ostream& operator<<(std::ostream& os, const Human& obj)
+//{
+//	return os << obj.get_last_name() << " " << obj.get_first_name() << " " << obj.get_age();
+//}
+
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return obj.print(os);
+}
 
 class Student :public Human
 {
@@ -108,17 +119,23 @@ public:
 		set_attendance(attendance);
 		cout << "SConstructor:\t" << this << endl;
 	}
-	~Student()
+	virtual ~Student()
 	{
 		cout << "SDestructor:\t" << this << endl;
 	}
 
-	void print()const
+	std::ostream& print(std::ostream& os)const
 	{
-		Human::print();
-		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
+		Human::print(os)<< " ";
+		return os << speciality << " " << group << " " << rating << " " << attendance ;
 	}
 };
+
+//std::ostream& operator<<(std::ostream& os, const Student& obj)
+//{
+//	return os << (Human&)obj<< obj.get_speciality() << " " << obj.get_group() << " " << obj.get_rating() << " " << obj.get_attendance();
+//}
+
 
 class Teacher :public Human
 {
@@ -151,14 +168,14 @@ public:
 		set_experience(experience);
 		cout << "TConstructor:\t" << this << endl;
 	}
-	~Teacher()
+	virtual ~Teacher()
 	{
 		cout << "TDestructor:\t" << this << endl;
 	}
-	void print()const
+	std::ostream& print(std::ostream& os)const
 	{
-		Human::print();
-		cout << speciality << " " << experience << endl;
+		Human::print(os) << " ";
+		return os << speciality << " " << experience ;
 	}
 };
 
@@ -184,20 +201,24 @@ public:
 		set_subject(subject);
 		cout << "GConstructor:\t" << this << endl;
 	}
-	~Graduate()
+	virtual ~Graduate()
 	{
 		cout << "GDenstructor:\t" << this << endl;
 	}
-	void print()const
+	std::ostream& print(std::ostream& os)const
 	{
-		Student::print();
-		cout << subject << endl;
+		Student::print(os) << " ";
+		return os << subject ;
 	}
 };
+
+//#define INHERITANCE
 
 void main()
 {
 	setlocale(LC_ALL, "");
+
+#ifdef INHERITANCE
 	Human human("Montana", "Antonio", 30);
 	human.print();
 
@@ -209,4 +230,30 @@ void main()
 
 	Graduate grad("Schrader", "Hank", 40, "Criminalistic", "OBN", 50, 50, "How to catch Heisenberg");
 	grad.print();
+
+#endif
+
+	Human* group[] =
+	{
+		new Student("Pinkman", "Jessie", 25, "Chemistry", "WW_220", 95, 98),
+		new Teacher("White", "Walter", 50, "Chemistry", 20),
+		new Graduate("Schrader", "Hank", 40, "Criminalistic", "OBN", 50, 50, "How to catch Heisenberg")
+	};
+
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++) //sizeof возвращает рамер массива в байтах
+	{
+		//cout << typeid(*groud[i]).name() << "\n";
+		//group[i] ->print();
+
+		//cout << *group[i] << endl;
+		//if(typeid(*group[i]) == typeid(Student))
+		//cout << *dynamic_cast<Student*>(group[i]) << endl;
+		cout << *group[i] << endl;
+		cout << "\n-------------------------------------\n";
+	}
+
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i]; // сделать виртуальные диструкторы ( перед деструкторами добавить слово virtual )
+	}
 }
