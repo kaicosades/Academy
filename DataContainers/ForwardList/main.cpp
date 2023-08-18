@@ -5,6 +5,7 @@ using std::cin;
 using std::endl;
 #define tab "\t"
 //#define DZ
+#define delimeter "\n---------------------------------------------------------\n"
 
 class ForwardList;
 ForwardList operator+(const ForwardList& left, const ForwardList& right);
@@ -95,34 +96,6 @@ public:
 	}
 
 
-	//ForwardList(int a, int aa, int aaa, int aaaa, int aaaaa)//(int arr[])
-	//{
-	//	int arr[4];
-	//	/*arr[0] = a;
-	//	arr[1] = aa;
-	//	arr[2] = aaa;
-	//	arr[3] = aaaa;
-	//	arr[4] = aaaaa;*/
-
-	//	int i = 0;
-	//	for (int i = 0, a; a; a++, i++)
-	//	{
-	//		push_front(a);	
-	//	}
-
-	//	return a;//arr[];
-	//}
-
-
-
-	/*ForwardList()
-	{
-		Head = nullptr;
-		int arr[] = 
-		return arr[]
-	}*/
-
-
 
 	ForwardList(const ForwardList& other):ForwardList()
 	{
@@ -136,6 +109,12 @@ public:
 		//чтобы получить значение по адресу, ставим - *, т е разыменовываем указатель.
 	}
 
+	ForwardList(ForwardList&& other):ForwardList()//делегирования конструктора по умолчанию. Если прога падает
+	{
+	/*	this->Head = other.Head;
+		other.Head = nullptr;*/
+		*this = std::move(other); // Функция move() принудительно вызывает MoveAssignment для объекта, если он есть
+	}
 
 	~ForwardList()
 	{
@@ -154,6 +133,16 @@ public:
 			push_back(Temp->Data);
 		return *this;
 	}
+
+	 ForwardList& operator=(ForwardList&& other) 
+	 {
+		 while (Head)pop_front();
+		 this->Head = other.Head;
+		 other.Head = nullptr;
+		 cout << "LMoveAssignment:\t" << this << endl; // assignment - присваивание
+			 return *this;
+	 }
+
 
 	//                           Adding elements:
 
@@ -318,6 +307,8 @@ public:
 //#define BACE_CHECK
 //#define OPERATOR_PLUS_CHECK
 //#define RANGE_BASED_FOR_ARRAY
+#define MOVE_SEMANTIC_CHECK
+
 
 ForwardList operator+(const ForwardList& left, const ForwardList& right)
 {
@@ -405,7 +396,9 @@ void main()
 		cout << i << tab;
 	}
 	cout << endl;
-#endif
+
+
+
 	ForwardList list = { 3,5,8,13,21 };
 	list.print();
 
@@ -414,7 +407,25 @@ void main()
 		cout << i << tab;
 	}
 	cout << endl;
+#endif
 
+#ifdef MOVE_SEMANTIC_CHECK
+	ForwardList list1 = { 3,5,8,13,21 };
+	for (int i : list1)cout << i << tab; cout << endl;
+	cout << delimeter << endl;
 
+	ForwardList list2 = { 34, 55, 89 };
+	for (int i : list2)cout << i << tab; cout << endl;
+	cout << delimeter << endl;
+
+	//ForwardList list3 = list1 + list2;//move constructor 21 02
+	ForwardList list3;
+	list3 = list1 + list2;
+	for (int i : list3)cout << i << tab; cout << endl; //move constructor 21 02
+	
+	
+	cout << delimeter << endl;
+
+#endif
 	//	//move semantika?
 }
