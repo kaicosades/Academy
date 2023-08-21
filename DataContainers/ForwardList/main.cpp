@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 //using namespace std;
 using std::cout;
 using std::cin;
@@ -12,8 +12,8 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right);
 
 class Element
 {
-	int Data; //значение элемента
-	Element* pNext; //адресс следующего элемента
+	int Data; //Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	Element* pNext; //Р°РґСЂРµСЃСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 public:
 	Element(int Data, Element* pNext = nullptr) :Data(Data), pNext(pNext)
 	{
@@ -31,7 +31,7 @@ public:
 	friend class Iterator;
 };
 
-class Iterator // класс создан на основе ошибок из дз от 16.08.2023
+class Iterator // РєР»Р°СЃСЃ СЃРѕР·РґР°РЅ РЅР° РѕСЃРЅРѕРІРµ РѕС€РёР±РѕРє РёР· РґР· РѕС‚ 16.08.2023
 {
 	Element* Temp;
 public:
@@ -47,7 +47,7 @@ public:
 	Iterator& operator++()
 	{
 		Temp = Temp->pNext;
-		return *this; //this это Iterator
+		return *this; //this СЌС‚Рѕ Iterator
 	}
 
 	bool operator==(const Iterator& other)const
@@ -59,7 +59,7 @@ public:
 		return this->Temp != other.Temp;
 	}
 
-	int operator*() // чтобы получить данные по адресу, его нужно разыменовать с помощью *. Процесс происходит неявно
+	int operator*() // С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ РїРѕ Р°РґСЂРµСЃСѓ, РµРіРѕ РЅСѓР¶РЅРѕ СЂР°Р·С‹РјРµРЅРѕРІР°С‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ *. РџСЂРѕС†РµСЃСЃ РїСЂРѕРёСЃС…РѕРґРёС‚ РЅРµСЏРІРЅРѕ
 	{
 		return Temp->Data;
 	}
@@ -67,10 +67,10 @@ public:
 
 class ForwardList
 {
-	Element* Head; // Голова списка - содержит адрес начального элемента списка
+	Element* Head; // Р“РѕР»РѕРІР° СЃРїРёСЃРєР° - СЃРѕРґРµСЂР¶РёС‚ Р°РґСЂРµСЃ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°
 public:
 
-	Iterator begin() //возвращает итератор
+	Iterator begin() //РІРѕР·РІСЂР°С‰Р°РµС‚ РёС‚РµСЂР°С‚РѕСЂ
 	{
 		return Head;
 	}
@@ -81,12 +81,12 @@ public:
 
 	ForwardList()
 	{
-		Head = nullptr; //Если список пуст, то его голова указывает на 0
+		Head = nullptr; //Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚, С‚Рѕ РµРіРѕ РіРѕР»РѕРІР° СѓРєР°Р·С‹РІР°РµС‚ РЅР° 0
 		//push_front(1);
 		cout << "LConstructor:\t" << this << endl;
 	}
 
-	ForwardList(const std::initializer_list<int>& il):ForwardList() // ссылка это адрес. Имея адрес, можно изменить значение объекта, поэтому ссылка делается константной.
+	ForwardList(const std::initializer_list<int>& il):ForwardList() // СЃСЃС‹Р»РєР° СЌС‚Рѕ Р°РґСЂРµСЃ. РРјРµСЏ Р°РґСЂРµСЃ, РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РѕР±СЉРµРєС‚Р°, РїРѕСЌС‚РѕРјСѓ СЃСЃС‹Р»РєР° РґРµР»Р°РµС‚СЃСЏ РєРѕРЅСЃС‚Р°РЅС‚РЅРѕР№.
 	{
 		for (int const* it = il.begin(); it != il.end(); it++)
 		{
@@ -105,15 +105,15 @@ public:
 		/*for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)
 			push_back(Temp->Data);*/
 
-		*this = other;//этот список= тот список//this - указатель на объект для которого вызывается метод
-		//чтобы получить значение по адресу, ставим - *, т е разыменовываем указатель.
+		*this = other;//СЌС‚РѕС‚ СЃРїРёСЃРѕРє= С‚РѕС‚ СЃРїРёСЃРѕРє//this - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ РІС‹Р·С‹РІР°РµС‚СЃСЏ РјРµС‚РѕРґ
+		//С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РїРѕ Р°РґСЂРµСЃСѓ, СЃС‚Р°РІРёРј - *, С‚ Рµ СЂР°Р·С‹РјРµРЅРѕРІС‹РІР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ.
 	}
 
-	ForwardList(ForwardList&& other):ForwardList()//делегирования конструктора по умолчанию. Если прога падает
+	ForwardList(ForwardList&& other):ForwardList()//РґРµР»РµРіРёСЂРѕРІР°РЅРёСЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ. Р•СЃР»Рё РїСЂРѕРіР° РїР°РґР°РµС‚
 	{
 	/*	this->Head = other.Head;
 		other.Head = nullptr;*/
-		*this = std::move(other); // Функция move() принудительно вызывает MoveAssignment для объекта, если он есть
+		*this = std::move(other); // Р¤СѓРЅРєС†РёСЏ move() РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РІС‹Р·С‹РІР°РµС‚ MoveAssignment РґР»СЏ РѕР±СЉРµРєС‚Р°, РµСЃР»Рё РѕРЅ РµСЃС‚СЊ
 	}
 
 	~ForwardList()
@@ -139,7 +139,7 @@ public:
 		 while (Head)pop_front();
 		 this->Head = other.Head;
 		 other.Head = nullptr;
-		 cout << "LMoveAssignment:\t" << this << endl; // assignment - присваивание
+		 cout << "LMoveAssignment:\t" << this << endl; // assignment - РїСЂРёСЃРІР°РёРІР°РЅРёРµ
 			 return *this;
 	 }
 
@@ -156,15 +156,15 @@ public:
 		if (Head == nullptr)return push_front(Data);
 		Element* Temp = Head;
 		while (Temp->pNext)Temp = Temp->pNext;
-		Temp->pNext = new Element(Data); // указатель на новый элемент, "сами файлы где-то болтаются"
+		Temp->pNext = new Element(Data); // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚, "СЃР°РјРё С„Р°Р№Р»С‹ РіРґРµ-С‚Рѕ Р±РѕР»С‚Р°СЋС‚СЃСЏ"
 	}
 
 	// Methods:
 
 	void print()const
 	{
-		//Element* Temp = Head; //Temp - это итератор
-		//// итератор - указатель, при помощи которого можно получить доступ к элементам структуры данных
+		//Element* Temp = Head; //Temp - СЌС‚Рѕ РёС‚РµСЂР°С‚РѕСЂ
+		//// РёС‚РµСЂР°С‚РѕСЂ - СѓРєР°Р·Р°С‚РµР»СЊ, РїСЂРё РїРѕРјРѕС‰Рё РєРѕС‚РѕСЂРѕРіРѕ РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Р°Рј СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…
 		//while (Temp)
 		//{
 		//	cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
@@ -221,7 +221,7 @@ public:
 		}
 		New = Temp->pNext;
 		Temp->pNext = Temp->pNext->pNext;
-		delete New;		//Не уверен, что файл удаляется
+		delete New;		//РќРµ СѓРІРµСЂРµРЅ, С‡С‚Рѕ С„Р°Р№Р» СѓРґР°Р»СЏРµС‚СЃСЏ
 		
 	}
 
@@ -267,7 +267,7 @@ public:
 		Element* Temp = Head;
 		while (Temp->pNext->pNext)Temp = Temp -> pNext;
 		delete Temp->pNext;
-		Temp->pNext = nullptr; // nullptr это указатель на ноль
+		Temp->pNext = nullptr; // nullptr СЌС‚Рѕ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРѕР»СЊ
 	}
 
 	void insert(int Index, int Data)
@@ -276,7 +276,7 @@ public:
 		Element* Temp = Head;
 		for (int i = 0; i < Index-1; i++)
 			if(Temp->pNext)
-				Temp = Temp->pNext; // если индекс больше списка, до добавляет в конец списка
+				Temp = Temp->pNext; // РµСЃР»Рё РёРЅРґРµРєСЃ Р±РѕР»СЊС€Рµ СЃРїРёСЃРєР°, РґРѕ РґРѕР±Р°РІР»СЏРµС‚ РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
 		Element* New = new Element(Data);
 		New->pNext = Temp->pNext;
 		Temp->pNext = New;
@@ -323,7 +323,7 @@ void main()
 
 #ifdef BACE_CHECK
 	int n;
-	cout << "Введите размер списка: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ СЃРїРёСЃРєР°: "; cin >> n;
 	ForwardList list;
 	for (int i = 0; i < n; i++)
 	{
@@ -349,20 +349,20 @@ void main()
 
 	/*int value;
 	int index;
-	cout << "Введите индекс элемента: "; cin >> index;
-	cout << "Введите значение элемента: "; cin >> value;
+	cout << "Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р°: "; cin >> index;
+	cout << "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°: "; cin >> value;
 	
 
 	list.insert(index, value);
 	list.print();
 
-	cout << "Введите индекс элемента: "; cin >> index;
+	cout << "Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р°: "; cin >> index;
 	list.erase(index);
 	list.print();*/
 
-//	ForwardList list2 = list;	//чтобы выполнилось deep copy будет copy constructor(в ином случае участок памяти останется тот же для нового листа
+//	ForwardList list2 = list;	//С‡С‚РѕР±С‹ РІС‹РїРѕР»РЅРёР»РѕСЃСЊ deep copy Р±СѓРґРµС‚ copy constructor(РІ РёРЅРѕРј СЃР»СѓС‡Р°Рµ СѓС‡Р°СЃС‚РѕРє РїР°РјСЏС‚Рё РѕСЃС‚Р°РЅРµС‚СЃСЏ С‚РѕС‚ Р¶Рµ РґР»СЏ РЅРѕРІРѕРіРѕ Р»РёСЃС‚Р°
 	ForwardList list2;
-	list2 = list;				//нужна перегрузка оператора
+	list2 = list;				//РЅСѓР¶РЅР° РїРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР°
 	list2.print();
 #endif
 
@@ -387,11 +387,11 @@ void main()
 
 #ifdef RANGE_BASED_FOR_ARRAY
 	int arr[] = { 3,5,8,13,21 };
-	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) //sizeof(arr)/sizeof(arr[0]) - вычисление объема массива
+	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) //sizeof(arr)/sizeof(arr[0]) - РІС‹С‡РёСЃР»РµРЅРёРµ РѕР±СЉРµРјР° РјР°СЃСЃРёРІР°
 		cout << arr[i] << tab;
 	cout << endl;
 
-	for (int i : arr) // на месте arr может быть что угодно, что хранит элементы
+	for (int i : arr) // РЅР° РјРµСЃС‚Рµ arr РјРѕР¶РµС‚ Р±С‹С‚СЊ С‡С‚Рѕ СѓРіРѕРґРЅРѕ, С‡С‚Рѕ С…СЂР°РЅРёС‚ СЌР»РµРјРµРЅС‚С‹
 	{
 		cout << i << tab;
 	}

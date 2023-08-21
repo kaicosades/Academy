@@ -1,4 +1,4 @@
-#include <iostream>
+Ôªø#include <iostream>
 using namespace std;
 using std::cout;
 using std::cin;
@@ -146,7 +146,7 @@ public:
 	{
 		cout << "Head: " << Head << endl;
 		Element* Temp = Head;
-		for (Temp; Temp != Tail; Temp = Temp->pNext)//Tail->pNext  ÔÓ˜ÂÏÛ ÛÍ‡Á˚‚‡ÂÚ Ì‡ Head???
+		for (Temp; Temp != Tail; Temp = Temp->pNext)//Tail->pNext  –ø–æ—á–µ–º—É —É–∫–∞–∑—ã–≤–∞–µ—Ç –Ω–∞ Head???
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 		cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 	}
@@ -162,7 +162,7 @@ void main()
 	setlocale(LC_ALL, "");
 
 	int n;
-	cout << "¬‚Â‰ËÚÂ ‡ÁÏÂ ÒÔËÒÍ‡: "; cin >> n;
+	cout << "–í–≤–µ–¥–∏—Ç–µ —Ä–∞–∑–º–µ—Ä —Å–ø–∏—Å–∫–∞: "; cin >> n;
 	LinkedList list;
 	for (int i = 0; i < n; i++)
 	{
