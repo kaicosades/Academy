@@ -7,7 +7,8 @@ using std::endl;
 //#define DZ
 #define delimeter "\n---------------------------------------------------------\n"
 
-template<typename Elem, typename T, typename Ind, typename List, typename initializer>
+
+template<typename T, typename Elem, typename List, typename I>
 class ForwardList;
 ForwardList operator+(const ForwardList& left, const ForwardList& right);
 
@@ -33,7 +34,7 @@ public:
 	friend class Iterator;
 };
 
-template<typename Elem, typename Iter>
+template<typename Iter, typename Elem>
 class Iterator // класс создан на основе ошибок из дз от 16.08.2023
 {
 	Elem* Temp;
@@ -68,7 +69,8 @@ public:
 	}
 };
 
-template<typename Elem, typename T, typename Ind, typename List, typename initializer> //initializer_list, ForwardList 
+
+template<typename T, typename Elem, typename List, typename I>
 class ForwardList
 {
 	Elem* Head; 
@@ -85,11 +87,12 @@ public:
 
 	ForwardList()
 	{
-		Head = nullptr; 
+		Head = nullptr; //Если список пуст, то его голова указывает на 0
+		//push_front(1);
 		cout << "LConstructor:\t" << this << endl;
 	}
 
-	ForwardList(const std::initializer<int>& il):ForwardList() // ссылка это адрес. Имея адрес, можно изменить значение объекта, поэтому ссылка делается константной.
+	ForwardList(const std::initializer_list<int>& il):ForwardList() // ссылка это адрес. Имея адрес, можно изменить значение объекта, поэтому ссылка делается константной.
 	{
 		for (int const* it = il.begin(); it != il.end(); it++)
 		{
@@ -166,7 +169,14 @@ public:
 
 	void print()const
 	{
-	
+		//Element* Temp = Head; //Temp - это итератор
+		//// итератор - указатель, при помощи которого можно получить доступ к элементам структуры данных
+		//while (Temp)
+		//{
+		//	cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
+		//	Temp = Temp->pNext;
+		//}
+
 		cout << "Head: " << Head << endl;
 		for (Elem* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
@@ -266,7 +276,7 @@ public:
 		Temp->pNext = nullptr; // nullptr это указатель на ноль
 	}
 
-	void insert(Ind Index, T Data)
+	void insert(int Index, int Data)
 	{
 		if (Index == 0)return push_front(Data);
 		Elem* Temp = Head;
@@ -279,7 +289,7 @@ public:
 
 	}
 
-	void erase(Ind Index)
+	void erase(I Index)
 	{
 		if (Index == 0)return pop_front();
 		Elem* Temp = Head;
@@ -292,6 +302,10 @@ public:
 
 	}
 	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
+
+
+
+	//char operator[](int i)
 
 };
 
@@ -402,16 +416,16 @@ void main()
 #endif
 
 #ifdef MOVE_SEMANTIC_CHECK
-	ForwardList list1 = { 3,5,8,13,21 };
+	ForwardList<int, Element, ForwardList, int> list1 = { 3,5,8,13,21 };
 	for (int i : list1)cout << i << tab; cout << endl;
 	cout << delimeter << endl;
 
-	ForwardList list2 = { 34, 55, 89 };
+	ForwardList<int, Element, ForwardList, int> list2 = { 34, 55, 89 };
 	for (int i : list2)cout << i << tab; cout << endl;
 	cout << delimeter << endl;
 
 	//ForwardList list3 = list1 + list2;//move constructor 21 02
-	ForwardList list3;
+	ForwardList<int, Element, ForwardList, int> list3;
 	list3 = list1 + list2;
 	for (int i : list3)cout << i << tab; cout << endl; //move constructor 21 02
 	
@@ -419,5 +433,5 @@ void main()
 	cout << delimeter << endl;
 
 #endif
-
+	//	//move semantika?
 }

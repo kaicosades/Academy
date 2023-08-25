@@ -7,17 +7,18 @@ using std::endl;
 //#define DZ
 #define delimeter "\n---------------------------------------------------------\n"
 
-template<typename Elem, typename T, typename Ind, typename List, typename initializer>
-class ForwardList;
-ForwardList operator+(const ForwardList& left, const ForwardList& right);
+template<typename T>class ForwardList;
+template<typename T>class Iterator;
+template<typename T>ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right);
+//template<typename T>class Iterator<T>;
 
-template<typename T, typename Elem>
-class Element
+template<typename T>class Element
 {
 	T Data; //значение элемента
-	Elem* pNext; //адресс следующего элемента
+	Element<T>* pNext; //адресс следующего элемента // В данном случае, как и вдругих функциях Т в элементе и в дате это один и тот же тип
 public:
-	Element(T Data, Elem* pNext = nullptr) :Data(Data), pNext(pNext)
+	//конструктор это метод, а метод это функция
+	Element(T Data, Element<T>* pNext = nullptr) :Data(Data), pNext(pNext)
 	{
 		cout << "EConstructor:\t" << this << endl;
 	}
@@ -28,17 +29,16 @@ public:
 	{
 		cout << "EDestructor:\t" << this << endl;
 	}
-	friend class ForwardList;
-	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
-	friend class Iterator;
+	 friend class ForwardList<T>;
+	template<typename T> friend ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right);
+	 friend class Iterator<T>;
 };
 
-template<typename Elem, typename Iter>
-class Iterator // класс создан на основе ошибок из дз от 16.08.2023
+template<typename T>class Iterator // класс создан на основе ошибок из дз от 16.08.2023
 {
-	Elem* Temp;
+	Element<T>* Temp;
 public:
-	Iterator(Elem* Temp = nullptr) :Temp(Temp)
+	Iterator(Element<T>* Temp = nullptr) :Temp(Temp)
 	{
 		cout << "ItConstructor:\t" << this << endl;
 	}
@@ -47,51 +47,53 @@ public:
 		cout << "ItDestructor:\t" << this << endl;
 	}
 
-	Iterator& operator++()
+	Iterator<T>& operator++()
 	{
 		Temp = Temp->pNext;
 		return *this; //this это Iterator
 	}
 
-	bool operator==(const Iter& other)const
+	bool operator==(const Iterator<T>& other)const
 	{
 		return this->Temp == other.Temp;
 	}
-	bool operator!=(const Iter& other)const
+	bool operator!=(const Iterator<T>& other)const
 	{
 		return this->Temp != other.Temp;
 	}
 
-	int operator*() // чтобы получить данные по адресу, его нужно разыменовать с помощью *. Процесс происходит неявно
+	T operator*() // чтобы получить данные по адресу, его нужно разыменовать с помощью *. Процесс происходит неявно
 	{
 		return Temp->Data;
 	}
+
+	//оператор * и итератор Т...
 };
 
-template<typename Elem, typename T, typename Ind, typename List, typename initializer> //initializer_list, ForwardList 
-class ForwardList
+template<typename T>class ForwardList
 {
-	Elem* Head; 
+	Element<T>* Head; // Голова списка - содержит адрес начального элемента списка
 public:
 
-	Iterator begin() //возвращает итератор
+	Iterator<T> begin() //возвращает итератор
 	{
 		return Head;
 	}
-	Iterator end()
+	Iterator<T> end()
 	{
 		return nullptr;
 	}
 
 	ForwardList()
 	{
-		Head = nullptr; 
+		Head = nullptr; //Если список пуст, то его голова указывает на 0
+		//push_front(1);
 		cout << "LConstructor:\t" << this << endl;
 	}
 
-	ForwardList(const std::initializer<int>& il):ForwardList() // ссылка это адрес. Имея адрес, можно изменить значение объекта, поэтому ссылка делается константной.
+	ForwardList(const std::initializer_list<T>& il):ForwardList() // ссылка это адрес. Имея адрес, можно изменить значение объекта, поэтому ссылка делается константной.
 	{
-		for (int const* it = il.begin(); it != il.end(); it++)
+		for (T const* it = il.begin(); it != il.end(); it++)
 		{
 			push_back(*it);
 		}
@@ -100,7 +102,7 @@ public:
 
 
 
-	ForwardList(const List& other):ForwardList()
+	ForwardList(const ForwardList<T>& other):ForwardList()
 	{
 		cout << "LCopyConstructor:\t" << this << endl;
 		//Deep copy:
@@ -112,7 +114,7 @@ public:
 		//чтобы получить значение по адресу, ставим - *, т е разыменовываем указатель.
 	}
 
-	ForwardList(List&& other):ForwardList()//делегирования конструктора по умолчанию. Если прога падает
+	ForwardList(ForwardList<T>&& other):ForwardList()//делегирования конструктора по умолчанию. Если прога падает
 	{
 	/*	this->Head = other.Head;
 		other.Head = nullptr;*/
@@ -127,17 +129,17 @@ public:
 
 	//							Operators:
 
-	 ForwardList& operator=(const List& other)
+	 ForwardList<T>& operator=(const ForwardList<T>& other)
 	{
 		if (this == &other)return *this;
 		while (Head)pop_front();
 		cout << "LCopyAssigment:\t" << this << endl;
-		for (Elem* Temp = other.Head; Temp; Temp = Temp->pNext)
+		for (Element<T>* Temp = other.Head; Temp; Temp = Temp->pNext)
 			push_back(Temp->Data);
 		return *this;
 	}
 
-	 ForwardList& operator=(List&& other)
+	 ForwardList<T>& operator=(ForwardList<T>&& other) 
 	 {
 		 while (Head)pop_front();
 		 this->Head = other.Head;
@@ -151,24 +153,31 @@ public:
 
 	void push_front(T Data)
 	{
-		Head = new Elem(Data, Head); //new?
+		Head = new Element<T>(Data, Head); //new?
 
 	}
 	void push_back(T Data)
 	{
 		if (Head == nullptr)return push_front(Data);
-		Elem* Temp = Head;
+		Element<T>* Temp = Head;
 		while (Temp->pNext)Temp = Temp->pNext;
-		Temp->pNext = new Elem(Data); // указатель на новый элемент, "сами файлы где-то болтаются"
+		Temp->pNext = new Element<T>(Data); // указатель на новый элемент, "сами файлы где-то болтаются"
 	}
 
 	// Methods:
 
 	void print()const
 	{
-	
+		//Element* Temp = Head; //Temp - это итератор
+		//// итератор - указатель, при помощи которого можно получить доступ к элементам структуры данных
+		//while (Temp)
+		//{
+		//	cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
+		//	Temp = Temp->pNext;
+		//}
+
 		cout << "Head: " << Head << endl;
-		for (Elem* Temp = Head; Temp; Temp = Temp->pNext)
+		for (Element<T>* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 	}
 
@@ -253,45 +262,49 @@ public:
 
 	void pop_front()
 	{
-		Elem* erased = Head;
+		Element<T>* erased = Head;
 		Head = Head->pNext;
 		delete erased;
 	}
 
 	void pop_back()
 	{
-		Elem* Temp = Head;
+		Element<T>* Temp = Head;
 		while (Temp->pNext->pNext)Temp = Temp -> pNext;
 		delete Temp->pNext;
 		Temp->pNext = nullptr; // nullptr это указатель на ноль
 	}
 
-	void insert(Ind Index, T Data)
+	void insert(int Index, T Data)
 	{
 		if (Index == 0)return push_front(Data);
-		Elem* Temp = Head;
+		Element<T>* Temp = Head;
 		for (int i = 0; i < Index-1; i++)
 			if(Temp->pNext)
 				Temp = Temp->pNext; // если индекс больше списка, до добавляет в конец списка
-		Elem* New = new Elem(Data);
+		Element<T>* New = new Element<T>(Data);
 		New->pNext = Temp->pNext;
 		Temp->pNext = New;
 
 	}
 
-	void erase(Ind Index)
+	void erase(int Index)
 	{
 		if (Index == 0)return pop_front();
-		Elem* Temp = Head;
+		Element<T>* Temp = Head;
 		for (int i = 0; i < Index - 1; i++)
 			if (Temp->pNext)
 				Temp = Temp->pNext;
-		Elem* erased = Temp->pNext;
+		Element<T>* erased = Temp->pNext;
 		Temp->pNext = Temp->pNext->pNext;
 		delete erased;
 
 	}
-	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
+	template<typename T> friend ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right);
+
+
+
+	//char operator[](int i)
 
 };
 
@@ -302,10 +315,10 @@ public:
 #define MOVE_SEMANTIC_CHECK
 
 
-ForwardList operator+(const ForwardList& left, const ForwardList& right)
+template<typename T>ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right)
 {
-	ForwardList cat = left;
-	for (Element* Temp = right.Head; Temp; Temp = Temp->pNext)cat.push_back(Temp->Data);
+	ForwardList<T> cat = left;
+	for (Element<T>* Temp = right.Head; Temp; Temp = Temp->pNext)cat.push_back(Temp->Data);
 	return cat;
 }
 
@@ -402,22 +415,29 @@ void main()
 #endif
 
 #ifdef MOVE_SEMANTIC_CHECK
-	ForwardList list1 = { 3,5,8,13,21 };
+	ForwardList<int> list1 = { 3,5,8,13,21 };
 	for (int i : list1)cout << i << tab; cout << endl;
 	cout << delimeter << endl;
 
-	ForwardList list2 = { 34, 55, 89 };
+	ForwardList<int> list2 = { 34, 55, 89 };
 	for (int i : list2)cout << i << tab; cout << endl;
 	cout << delimeter << endl;
 
 	//ForwardList list3 = list1 + list2;//move constructor 21 02
-	ForwardList list3;
+	ForwardList<int> list3;
 	list3 = list1 + list2;
 	for (int i : list3)cout << i << tab; cout << endl; //move constructor 21 02
 	
 	
 	cout << delimeter << endl;
 
-#endif
+	ForwardList<double> d_list_1 = { 2.7, 3.14, 5.1 };
+	ForwardList<double> d_list_2 = { 7.5, 8.2, 4.4, 9.5 };
+	ForwardList<double> d_list_3 = d_list_1 + d_list_2;
+	for (double i : d_list_1)cout << i << tab; cout << endl;
+	for (double i : d_list_2)cout << i << tab; cout << endl;
+	for (double i : d_list_3)cout << i << tab; cout << endl;
 
+#endif
+	//	//move semantika?
 }
