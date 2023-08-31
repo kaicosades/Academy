@@ -14,16 +14,8 @@ template<typename T>class List
 		Element* pPrev;
 
 	public:
-		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr) : Data(Data), pNext(pNext), pPrev(pPrev)
-		{
-			cout << "EConstructor:\t" << this << endl;
-		}
-
-		~Element()
-		{
-			cout << "EDestructor:\t" << this << endl;
-		}
-
+		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr);
+		~Element();
 		friend class List; //Печень и человек
 	}*Head, *Tail;//Вписываем создаваемые объекты
 	unsigned int size;
@@ -32,27 +24,12 @@ template<typename T>class List
 	protected: //для наследования
 		Element* Temp;
 	public:
-		ConstBaseIterator(Element* Temp) :Temp(Temp)
-		{
-			cout << "BItConstructor:\t" << this << endl;
-		}
-		~ConstBaseIterator()
-		{
-			cout << "BItDestructor:\t" << this << endl;
-		}
+		ConstBaseIterator(Element* Temp);
+		~ConstBaseIterator();
 
-		bool operator==(const ConstBaseIterator& other)const
-		{
-			return this->Temp == other.Temp;
-		}
-		bool operator!=(const ConstBaseIterator& other)const
-		{
-			return this->Temp != other.Temp;
-		}
-		const T& operator*() const
-		{
-			return Temp->Data;
-		}
+		bool operator==(const ConstBaseIterator& other)const;
+		bool operator!=(const ConstBaseIterator& other)const;
+		const T& operator*() const;
 
 	};
 public:
@@ -115,6 +92,50 @@ public:
 	void print()const;
 	void reverse_print()const;
 };
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+///                     Element   methods   
+
+template<typename T>List<T>::Element::Element(T Data, Element* pNext , Element* pPrev ) : Data(Data), pNext(pNext), pPrev(pPrev)
+{
+	cout << "EConstructor:\t" << this << endl;
+}
+
+template<typename T>List<T>::Element::~Element()
+{
+	cout << "EDestructor:\t" << this << endl;
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+///                      ConstBaseIterator   methods   
+
+template<typename T>List<T>::ConstBaseIterator::ConstBaseIterator(Element* Temp) :Temp(Temp)
+{
+	cout << "BItConstructor:\t" << this << endl;
+}
+template<typename T>List<T>::ConstBaseIterator::~ConstBaseIterator()
+{
+	cout << "BItDestructor:\t" << this << endl;
+}
+
+template<typename T>bool List<T>::ConstBaseIterator::operator==(const ConstBaseIterator& other)const
+{
+	return this->Temp == other.Temp;
+}
+template<typename T>bool List<T>::ConstBaseIterator::operator!=(const ConstBaseIterator& other)const
+{
+	return this->Temp != other.Temp;
+}
+template<typename T>const T& List<T>::ConstBaseIterator::operator*() const
+{
+	return Temp->Data;
+}
+
+
 
 
 
