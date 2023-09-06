@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 //#include "include\List2.h"
 #include <functional>
 #include<ctime>>
@@ -11,7 +11,7 @@ using namespace std;
 
 class Tree
 {
-protected: // для чего???
+protected: // РґР»СЏ С‡РµРіРѕ???
 	class Element
 	{
 		int Data;
@@ -112,17 +112,17 @@ public:
 
 
 	using Callback = std::function<int(void)>;
-	void measure(Callback function)//сделать перегрузку
+	void measure(Callback function)//СЃРґРµР»Р°С‚СЊ РїРµСЂРµРіСЂСѓР·РєСѓ
 	{
 		clock_t start = clock();
 		clock_t end = clock();
 		start = clock();
 		int depth = function();
 		end = clock();
-		cout << depth << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";
+		cout << depth << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";
 	}
 private:
-	void insert(int Data, Element* Root)//Element* Root - адресс элемента, на котором останавливается функция
+	void insert(int Data, Element* Root)//Element* Root - Р°РґСЂРµСЃСЃ СЌР»РµРјРµРЅС‚Р°, РЅР° РєРѕС‚РѕСЂРѕРј РѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ
 	{
 		if (this->Root == nullptr)this->Root = new Element(Data);
 		if (Root == nullptr)return;
@@ -259,7 +259,7 @@ private:
 						{
 							n--;
 							? = n;
-							//while (n)//условная переменная
+							//while (n)//СѓСЃР»РѕРІРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ
 							//	Temp = Temp->pRight;
 							Temp = Root;
 
@@ -373,7 +373,7 @@ void main()
 #ifdef Tree_1
 	Tree tree;
 	int n;
-	cout << "Введите размер дерева: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРµСЂРµРІР°: "; cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		//tree.insert(rand() % 100, tree.getRoot());
@@ -381,105 +381,105 @@ void main()
 	}
 	//tree.print(tree.getRoot());
 	tree.print_2();
-	cout << "Минимальное значение в дереве: " << tree.minValue(tree.getRoot()) << endl;
-	cout << "Максимальне значение в дереве: " << tree.maxValue(tree.getRoot()) << endl;
-	cout << "Сумма элементов дерева:\t\t " << tree.Sum(tree.getRoot()) << endl;
-	cout << "Количество элементов дерева: " << tree.Count(tree.getRoot()) << endl;
-	cout << "Среднее арифмитическое элементов дерева: " << tree.Avg() << endl;
+	cout << "РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.minValue(tree.getRoot()) << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.maxValue(tree.getRoot()) << endl;
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°:\t\t " << tree.Sum(tree.getRoot()) << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.Count(tree.getRoot()) << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРёС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.Avg() << endl;
 #endif
 #ifdef UTree
 	UniqueTree tree_2;
 	int n;
-	cout << "Введите размер дерева: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРµСЂРµРІР°: "; cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		tree_2.insert(rand() % 100, tree_2.getRoot());
 	}
 	tree_2.print(tree_2.getRoot());
-	cout << "Минимальное значение в дереве: " << tree_2.minValue(tree_2.getRoot()) << endl;
-	cout << "Максимальне значение в дереве: " << tree_2.maxValue(tree_2.getRoot()) << endl;
-	cout << "Сумма элементов дерева:\t\t " << tree_2.Sum(tree_2.getRoot()) << endl;
-	cout << "Количество элементов дерева: " << tree_2.Count(tree_2.getRoot()) << endl;
-	cout << "Среднее арифмитическое элементов дерева: " << tree_2.Avg() << endl;
+	cout << "РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree_2.minValue(tree_2.getRoot()) << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree_2.maxValue(tree_2.getRoot()) << endl;
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°:\t\t " << tree_2.Sum(tree_2.getRoot()) << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree_2.Count(tree_2.getRoot()) << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРёС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree_2.Avg() << endl;
 #endif
 	Tree tree;
 	int n;
-	cout << "Введите размер дерева: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРµСЂРµРІР°: "; cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		tree.insert(rand() % 100);
 
 	}
 	tree.print();
-	cout << "Минимальное значение в дереве: " << tree.minValue() << endl;
-	cout << "Максимальне значение в дереве: " << tree.maxValue() << endl;
-	cout << "Сумма элементов дерева:\t\t " << tree.Sum() << endl;
-	cout << "Количество элементов дерева: " << tree.Count() << endl;
-	cout << "Среднее арифмитическое элементов дерева: " << tree.Avg() << endl;
+	cout << "РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.minValue() << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: " << tree.maxValue() << endl;
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°:\t\t " << tree.Sum() << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.Count() << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРёС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: " << tree.Avg() << endl;
 
 #endif // BASE_CHECK
 
 #ifdef DEPTH_CHECK
 	Tree tree = { 50, 25, 75, 16,32,64,90, 28 , 100, 1001 };
 	tree.print();
-	cout << "Глубина дерева: " << tree.Depth() << endl;
+	cout << "Р“Р»СѓР±РёРЅР° РґРµСЂРµРІР°: " << tree.Depth() << endl;
 #endif
 
 #ifdef CHECK
 	Tree tree;
 	clock_t start = clock();
 	int n;
-	cout << "Введите размер дерева: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РґРµСЂРµРІР°: "; cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		tree.insert(rand() % 100);
 	}
 	clock_t end = clock();
-	cout << "Дерево заполнено за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";
+	cout << "Р”РµСЂРµРІРѕ Р·Р°РїРѕР»РЅРµРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";
 	//tree.print();
-	cout << "Минимальное значение в дереве: ";
+	cout << "РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: ";
 	start = clock();
 	int min = tree.minValue();
 	end = clock();
-	cout << min << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";//<< tree.minValue() << endl;
+	cout << min << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";//<< tree.minValue() << endl;
 
 
-	cout << "Максимальне значение в дереве: ";
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРµСЂРµРІРµ: ";
 	start = clock();
 	int max = tree.maxValue();
 	end = clock();
-	cout << max << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";// << tree.maxValue() << endl;
+	cout << max << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";// << tree.maxValue() << endl;
 
 
-	cout << "Сумма элементов дерева:\t\t ";
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°:\t\t ";
 	start = clock();
 	int sum = tree.Sum();
 	end = clock();
-	cout << sum << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";// << tree.Sum() << endl;
+	cout << sum << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";// << tree.Sum() << endl;
 
 
-	cout << "Количество элементов дерева: ";
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: ";
 	start = clock();
 	int count = tree.Count();
 	end = clock();
-	cout << count << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";//<< tree.Count() << endl;
+	cout << count << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";//<< tree.Count() << endl;
 
 
-	cout << "Среднее арифмитическое элементов дерева: ";
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРёС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РґРµСЂРµРІР°: ";
 	start = clock();
 	int avg = tree.Avg();
 	end = clock();
-	cout << avg << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";//<< tree.Avg() << endl;
+	cout << avg << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";//<< tree.Avg() << endl;
 
 
-	cout << "Глубина дерева: ";
+	cout << "Р“Р»СѓР±РёРЅР° РґРµСЂРµРІР°: ";
 	start = clock();
 	int depth = tree.Depth();
 	end = clock();
-	cout << depth << ", вычислино за " << double(end - start) / CLOCKS_PER_SEC << " секунд\n";//<< tree.Depth() << endl;
+	cout << depth << ", РІС‹С‡РёСЃР»РёРЅРѕ Р·Р° " << double(end - start) / CLOCKS_PER_SEC << " СЃРµРєСѓРЅРґ\n";//<< tree.Depth() << endl;
 
 	//int (*Lala)() = &Depth;
-	cout << "Глубина дерева: "; //<< tree.measure(Depth);
-	tree.measure([&tree]() -> int {return tree.Depth(); }); //f12 не указывает на функци.
+	cout << "Р“Р»СѓР±РёРЅР° РґРµСЂРµРІР°: "; //<< tree.measure(Depth);
+	tree.measure([&tree]() -> int {return tree.Depth(); }); //f12 РЅРµ СѓРєР°Р·С‹РІР°РµС‚ РЅР° С„СѓРЅРєС†Рё.
 #endif
 }
