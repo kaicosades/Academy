@@ -1,4 +1,5 @@
-﻿//#define FIGURE
+﻿#define FIGURE
+//#define SHUTER
 
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Shuter_and_Figure
 {
-    internal class Program
-    {
-        const string delimiter = "\n----------------------------------------------\n";
-        static void Main(string[] args)
-        {
+	internal class Program
+	{
+		const string delimiter = "\n----------------------------------------------\n";
+		static void Main(string[] args)
+		{
 #if FIGURE
             Console.Write("Введите размер фигур: ");
             int n = Convert.ToInt32(Console.ReadLine());
@@ -86,13 +87,20 @@ namespace Shuter_and_Figure
             }
             Console.WriteLine(delimiter);
 
-           //setlocale(LC_ALL, ".866");
-           // var toEncoding = Encoding.GetEncoding(".886");
-           // Encoding win = Encoding.GetEncoding("CP-886");
+            //setlocale(LC_ALL, ".866");
+            // var toEncoding = Encoding.GetEncoding(".886");
+            // Encoding win = Encoding.GetEncoding("CP-886");
+
+            Console.OutputEncoding = System.Text.Encoding.GetEncoding("IBM437");
+            for (int i = 0; i < 256; i++)
+            { 
+                if(i%16==0) Console.WriteLine();
+                Console.Write((char)i + " ");
+            }
 
             char ugol_left_up = Convert.ToChar(218);
             char ugol_left_down = Convert.ToChar(219);
-            char white = Convert.ToChar(219);
+            char white = Convert.ToChar(166);
             char gorizont = Convert.ToChar(196);
             char ugol_right_up = Convert.ToChar(191);
             char ugol_right_down = Convert.ToChar(217);
@@ -160,31 +168,47 @@ namespace Shuter_and_Figure
             }
 #endif
 
-            char play;
+#if SHUTER
+            //char play;
+            ConsoleKey play;
             do
             {
-                play = _getch();
-               // if (play == 13)
-                   // cout << "Îãîíü" << endl;
+                //play = Console.ReadKey(true).KeyChar;
+                play = Console.ReadKey(true).Key;
+                // if (play == 13)
+                // cout << "Îãîíü" << endl;
+                //switch (play)
+                //{
+                //    case 'w':
+                //    case 'W': Console.WriteLine("Вперед") ; break;
+                //    case 's':
+                //    case 'S': Console.WriteLine("Назад"); break;
+                //    case 'd':
+                //    case 'D': Console.WriteLine("Вправо"); break;
+                //    case 'a':
+                //    case 'A': Console.WriteLine("Влево"); break;
+                //    case ' ': Console.WriteLine("Прыжок"); break;
+                //    default:
+                //        Console.WriteLine("Error"); break;
+                //}
                 switch (play)
                 {
-                    case 'w':
-                    case 'W': Console.WriteLine("Вперед") ; break;
-                    case 's':
-                    case 'S': Console.WriteLine("Назад"); break;
-                    case 'd':
-                    case 'D': Console.WriteLine("Вправо"); break;
-                    case 'a':
-                    case 'A': Console.WriteLine("Влево"); break;
-                    case ' ': Console.WriteLine("Прыжок"); break;
+                    case ConsoleKey.W: Console.WriteLine("Вперед"); break;
+                    case ConsoleKey.S: Console.WriteLine("Назад"); break;
+                    case ConsoleKey.A: Console.WriteLine("Вправо"); break;
+                    case ConsoleKey.D: Console.WriteLine("Влево"); break;
+                    case ConsoleKey.Spacebar: Console.WriteLine("Прыжок"); break;
+                    default:
+                        Console.WriteLine("Error"); break;
                 }
             } while (Convert.ToChar(play) != 27);
+#endif
+		}
 
-        }
+		//private static char _getch()
+  //      {
+  //          throw new NotImplementedException();
+  //      }
 
-        private static char _getch()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+		}
+	}
