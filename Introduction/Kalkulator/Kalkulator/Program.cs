@@ -3,6 +3,7 @@
 //#define TASK_2
 //#define TASK_3
 //#define TASK_4
+//#define KALKULATOR_OA
 
 using System;
 using System.Collections.Generic;
@@ -41,10 +42,13 @@ namespace Kalkulator
 #endif
 
 #if TASK_1
-
-			float i = (float)Convert.ToDouble(Console.ReadLine());
+			//Console.Read
+			string s_money = Console.ReadLine();
+			s_money = s_money.Replace('.', ',');
+            Console.WriteLine(s_money);
+            double i = Convert.ToDouble(s_money);
 			int j;
-			j = Convert.ToInt32(i);						//рубли
+			j = (int)i;						//рубли
 			i = Convert.ToInt32((i - j) * 100);			//копейки
             Console.WriteLine(j + " рублей " + i + " копеек");
 
@@ -74,6 +78,20 @@ Console.WriteLine("Вычисление стоимости поездки на �
 			Console.Write("Расход бензина (литров на 100 км пробега): "); float j = (float)Convert.ToDouble(Console.ReadLine());
 			Console.Write("Цена литра бензина (руб.) "); float n = (float)Convert.ToDouble(Console.ReadLine());
 			Console.Write("Поездка на дачу и обратно обойдется в " + (i * 2 * n * j/100) + " рублей.");
+#endif
+
+#if KALKULATOR_OA
+			Console.WriteLine("Введите арифметическое выражение: ");
+			string expression = Console.ReadLine();
+            Console.WriteLine(expression);
+			string[] operands = expression.Split('+', '-', '*', '/');
+			double a = Convert.ToDouble(operands[0]);
+			double b = Convert.ToDouble(operands[1]);
+			if (expression.Contains("+")) Console.WriteLine($" {a} + {b} = {a+b}");		// без $ выводится просто выражение в скобках
+			else if (expression.Contains("-")) Console.WriteLine($" {a} - {b} = {a-b}");
+			else if (expression.Contains("*")) Console.WriteLine($" {a} * {b} = {a*b}");
+			else if (expression.Contains("/")) Console.WriteLine($" {a} / {b} = {a/b}");
+			else Console.WriteLine("Error: No operation");
 #endif
 
 		}

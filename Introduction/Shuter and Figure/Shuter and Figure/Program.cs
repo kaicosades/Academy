@@ -91,7 +91,14 @@ namespace Shuter_and_Figure
             // var toEncoding = Encoding.GetEncoding(".886");
             // Encoding win = Encoding.GetEncoding("CP-886");
 
-            Console.OutputEncoding = System.Text.Encoding.GetEncoding("IBM437");
+
+
+            Console.WriteLine(Console.OutputEncoding.BodyName);
+            Console.WriteLine(Console.OutputEncoding.CodePage);
+            Console.WriteLine(Console.OutputEncoding.WindowsCodePage);
+            Console.OutputEncoding = System.Text.Encoding.GetEncoding(28591);
+            Console.WriteLine(Console.OutputEncoding.CodePage);
+
             for (int i = 0; i < 256; i++)
             { 
                 if(i%16==0) Console.WriteLine();
@@ -100,7 +107,7 @@ namespace Shuter_and_Figure
 
             char ugol_left_up = Convert.ToChar(218);
             char ugol_left_down = Convert.ToChar(219);
-            char white = Convert.ToChar(166);
+            char white = Convert.ToChar(166);//некорректно
             char gorizont = Convert.ToChar(196);
             char ugol_right_up = Convert.ToChar(191);
             char ugol_right_down = Convert.ToChar(217);
