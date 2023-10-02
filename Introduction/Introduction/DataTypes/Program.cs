@@ -58,7 +58,7 @@ namespace DataTypes
 			Console.WriteLine("DOUBLE:\t" + sizeof(double) + " Bytes");
 			Console.WriteLine(double.MinValue + " ... " + double.MaxValue);
 			Console.WriteLine(delimeter);
-
+#endif
 		}
 	}
 }
