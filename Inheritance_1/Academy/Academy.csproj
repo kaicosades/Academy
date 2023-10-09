@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4486DBAA-1B0E-4672-85F3-8E629F5180AE}</ProjectGuid>
+    <ProjectGuid>{8A8AC7C3-6056-418F-BBF5-4A8785E4D6ED}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Fraction</RootNamespace>
-    <AssemblyName>Fraction</AssemblyName>
+    <RootNamespace>Academy</RootNamespace>
+    <AssemblyName>Academy</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fraction.cs" />
+    <Compile Include="Graduate.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Teacher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
