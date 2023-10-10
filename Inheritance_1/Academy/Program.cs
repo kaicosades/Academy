@@ -20,9 +20,9 @@ namespace Academy
            // Console.WriteLine(teacher);
 
 			Graduate graduate = new Graduate("Vasiliy", "Tupenko", 26, "Chemistry", "WWW_22200", 50, 50, "Subject");
-            //Console.WriteLine(graduate);
+			//Console.WriteLine(graduate);
 
-			Student tommy = new Student (human, "Theft" , "Vise" , 98, 99)
+			Student tommy = new Student(human, "Theft", "Vise", 98, 99);
 			
 			Human[] group = new Human[] { student, teacher, graduate, tommy, 
 				new Teacher("Diaz", "Ricardo", 50, "Weapons distribution" , 25) };

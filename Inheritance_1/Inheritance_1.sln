@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{8A8AC7C3-6056-418F-BBF5-4A8785E4D6ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGeomerty", "AbstractGeomerty\AbstractGeomerty.csproj", "{1C7FD42D-4873-41E8-97F1-5E54D0A52666}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8A8AC7C3-6056-418F-BBF5-4A8785E4D6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A8AC7C3-6056-418F-BBF5-4A8785E4D6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A8AC7C3-6056-418F-BBF5-4A8785E4D6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C7FD42D-4873-41E8-97F1-5E54D0A52666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C7FD42D-4873-41E8-97F1-5E54D0A52666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C7FD42D-4873-41E8-97F1-5E54D0A52666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C7FD42D-4873-41E8-97F1-5E54D0A52666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
