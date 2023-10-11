@@ -40,7 +40,11 @@ namespace AbstractGeomerty
 		public override void Draw(PaintEventArgs e) // некорректно
 		{
 			Pen pen = new Pen(сolor, LineWidth);
-			//e.Graphics.DrawRectangle(pen, StartX, StartY, (int)SideA, (int)SideB);
+			//e.Graphics.DrawElips;
+			//System.Drawing.PointF poind = new PointF(Radius);
+
+			RectangleF rect = new RectangleF(Radius, Radius);
+			e.Graphics.DrawEllipse(pen, rect);
 		}
 
 		public override void Info(PaintEventArgs e)
