@@ -18,6 +18,8 @@ namespace AbstractGeomerty
 		public static readonly int MAX_LINT_WIDTH = 32;
 		public static readonly int MIN_SIZE = 20;
 		public static readonly int MAX_SIZE = 500;
+		public static readonly int MIN_CORNER = 1;
+		public static readonly int MAX_CORNER = 179;
 
 		int start_x;
 		int start_y;
