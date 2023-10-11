@@ -22,10 +22,14 @@ namespace AbstractGeomerty
 				);
 			PaintEventArgs e = new PaintEventArgs( graphics, window_rect );
 
-			System.Drawing.Rectangle rect = new System.Drawing.Rectangle(200, 150, 100, 100);//, 5);//, Color.AliceBlue);
+			//Rectangle rect = new Rectangle(200, 150, 100, 100, 5, Color.AliceBlue);
 			//rect.Info(e);
-			Rectangle test_1 = new Rectangle(200, 150, 100, 100, 5, Color.AliceBlue);
-			test_1.Info(e);
+
+			//Triangle tri = new Triangle(200, 150, 90, 100, 100, 5, Color.Bisque);
+			//tri.Info(e);
+
+			Circle cir = new Circle(200, 100, 100, 5, Color.Blue);
+			cir.Info(e);
 
 		}
 		[DllImport("kernel32.dll")]

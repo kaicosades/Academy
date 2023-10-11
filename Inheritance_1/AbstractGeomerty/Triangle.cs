@@ -67,7 +67,7 @@ namespace AbstractGeomerty
 		public override void Draw(PaintEventArgs e) // некорректно
 		{
 			Pen pen = new Pen(сolor, LineWidth);
-			e.Graphics.DrawRectangle(pen, StartX, StartY, (int)SideA, (int)SideB);
+			//e.Graphics.Draw;
 		}
 
 		public override void Info(PaintEventArgs e)
