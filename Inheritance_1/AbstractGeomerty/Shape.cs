@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace AbstractGeomerty
 {
-	abstract class Shape
+	abstract class Shape//:IDrawable
 	{
 		public static readonly int MIN_START_X = 10;
 		public static readonly int MAX_START_X = 700;
@@ -71,7 +71,7 @@ namespace AbstractGeomerty
 		{
             Console.WriteLine($"Площадь фигуры: {this.GetArea()}");
             Console.WriteLine($"Периметр фигуры: {this.GetPerimeter()}");
-			this.Draw(e);
+			//this.Draw(e);
             Console.WriteLine();
         }
 	}

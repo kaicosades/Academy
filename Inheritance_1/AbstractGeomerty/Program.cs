@@ -22,15 +22,18 @@ namespace AbstractGeomerty
 				);
 			PaintEventArgs e = new PaintEventArgs( graphics, window_rect );
 
-			//Rectangle rect = new Rectangle(200, 150, 100, 100, 5, Color.AliceBlue);
-			//rect.Info(e);
+			Rectangle rect = new Rectangle(200, 150, 100, 100, 5, Color.AliceBlue);
+			rect.Info(e);
 
 			//Triangle tri = new Triangle(200, 150, 90, 100, 100, 5, Color.Bisque);
 			//tri.Info(e);
 
-			Circle cir = new Circle(200, 100, 100, 5, Color.Blue);
-			cir.Info(e);
+			//Circle cir = new Circle(200, 100, 100, 5, Color.Blue);
+			//cir.Info(e);
 
+			Square square = new Square(120, 400, 100, 3, Color.Red);
+			square.Info(e);
+			square.DrawDiagonal(e);
 		}
 		[DllImport("kernel32.dll")]
 		public static extern IntPtr GetConsoleWindow();

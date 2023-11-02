@@ -43,8 +43,8 @@ namespace AbstractGeomerty
 			//e.Graphics.DrawElips;
 			//System.Drawing.PointF poind = new PointF(Radius);
 
-			RectangleF rect = new RectangleF(Radius, Radius);
-			e.Graphics.DrawEllipse(pen, rect);
+			//RectangleF rect = new RectangleF(Radius, Radius);
+			//e.Graphics.DrawEllipse(pen, rect);
 		}
 
 		public override void Info(PaintEventArgs e)

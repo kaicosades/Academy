@@ -11,7 +11,7 @@ using System.Drawing;
 namespace AbstractGeomerty
 {
 
-	 class  Rectangle:Shape
+	 class  Rectangle:Shape, IHaveDiagonal//, IDrawable
 	{
 		double side_a;
 		double side_b;
@@ -67,7 +67,8 @@ namespace AbstractGeomerty
             Console.WriteLine($"Сторона А: {SideA}");
             Console.WriteLine($"Сторона B: {SideB}");
             Console.WriteLine($"Диагональ: {GetDiagonal()}");
-            base.Info(e);
+			this.Draw(e);
+			base.Info(e);
 		}
 
 	}

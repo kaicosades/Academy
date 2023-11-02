@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AbstractGeomerty
 {
-	internal class Triangle:Shape
+	internal class Triangle:Shape, IHaveHeight
 	{
 		double side_a;
 		double side_b;
@@ -78,6 +78,12 @@ namespace AbstractGeomerty
 			base.Info(e);
 		}
 
+		double IHaveHeight()
+		{
+			return 0;
+		}
+
+		public abstract double GetHeight();
 
 	}
 }
